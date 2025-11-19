@@ -71,7 +71,10 @@ class _Lesson03State extends State<Lesson03> {
                     ),
                   ),
                   const SizedBox(height: 2.37,),
-                  Text(titles[index]),
+                  Text(
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    titles[index], style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
                 ],
               );
             },

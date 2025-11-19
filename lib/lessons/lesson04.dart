@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class FirstPage extends StatelessWidget {
-  const FirstPage({super.key});
+class Lesson04 extends StatelessWidget {
+  const Lesson04({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +13,6 @@ class FirstPage extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0.0,
           centerTitle: true,
-          actions: [
-            IconButton(
-              onPressed: () => context.go('/second'),
-              icon: Icon(Icons.arrow_forward_outlined),
-            ),
-          ],
         ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(

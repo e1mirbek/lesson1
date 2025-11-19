@@ -2,18 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lesson1/widgets/product_card.dart';
 
-class FourthPage extends StatelessWidget {
-  const FourthPage({super.key});
+class Lesson05 extends StatelessWidget {
+  const Lesson05({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () => context.go('/third'),
-            icon: Icon(Icons.arrow_back_outlined),
-          ),
           title: Text(
             "Задача 4",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),

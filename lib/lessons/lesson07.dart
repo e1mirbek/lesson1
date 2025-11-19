@@ -2,20 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lesson1/widgets/button_widget.dart';
 
-class ThirdPage extends StatelessWidget {
-  const ThirdPage({super.key});
+class Lesson07 extends StatelessWidget {
+  const Lesson07({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () => context.go('/second'),
-            icon: Icon(
-              Icons.arrow_back_outlined,
-            ),
-          ),
           title: Text(
             "Задача 3"
           ),
