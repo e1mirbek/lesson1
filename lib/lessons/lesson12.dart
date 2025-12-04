@@ -1,6 +1,10 @@
 // Login
 
+import 'dart:developer' as dev;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:lesson1/widgets/button_widget.dart';
 
 class Lesson12 extends StatefulWidget {
   const Lesson12({super.key});
@@ -11,8 +15,26 @@ class Lesson12 extends StatefulWidget {
 
 class _Lesson12State extends State<Lesson12> {
 
+
   bool rememberMe = false;
   bool _obsureText = true;
+
+
+  final emailRegExp = RegExp(r"^[\w\.-]+@[\w\.-]+\.\w+$");
+
+  String? errorText;
+
+  void validateEmail(String value) {
+    setState(() {
+      if (value.isEmpty) {
+        errorText = "Введите email";
+      } else if (!emailRegExp.hasMatch(value)) {
+        errorText = "Неверный email";
+      } else {
+        errorText = null;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,8 +117,17 @@ class _Lesson12State extends State<Lesson12> {
                         ),
                       ),
                       const SizedBox(height: 2),
+                      // Gmail
                       TextField(
+                        onChanged: (value) => validateEmail(value),
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(30),
+                          FilteringTextInputFormatter.allow(
+                            RegExp(r"[a-zA-Z0-9@._-]"),
+                          ),
+                        ],
                         decoration: InputDecoration(
+                          errorText: errorText,
                           contentPadding: EdgeInsets.symmetric(vertical: 10),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -126,7 +157,14 @@ class _Lesson12State extends State<Lesson12> {
                                 _obsureText = !_obsureText;
                               });
                             },
-                            icon: Icon(_obsureText ? Icons.visibility_off_outlined : Icons.visibility_outlined, color: _obsureText ? Color(0xFFACB5BB) : Colors.black),
+                            icon: Icon(
+                              _obsureText
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                              color: _obsureText
+                                  ? Color(0xFFACB5BB)
+                                  : Colors.black,
+                            ),
                           ),
                           contentPadding: EdgeInsets.symmetric(vertical: 10),
                           enabledBorder: OutlineInputBorder(
@@ -138,20 +176,107 @@ class _Lesson12State extends State<Lesson12> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 16,),
+                      const SizedBox(height: 16),
                       Row(
                         children: [
                           Checkbox(
                             activeColor: Colors.blue,
-                              value: rememberMe, onChanged: (value) {
-                            setState(() {
-                              rememberMe = value!;
-                            });
-                          }),
+                            value: rememberMe,
+                            onChanged: (value) {
+                              setState(() {
+                                rememberMe = value!;
+                              });
+                            },
+                          ),
                           Text("Remember me"),
                           const Spacer(),
                         ],
-                      )
+                      ),
+                      ButtonWidget(
+                        text: "Log in",
+                        backgroundColor: Color(0xFF1D61E7),
+                        foregroundColor: Colors.white,
+                        height: 48,
+                        width: width,
+                        textStyle: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                        // onPressed: (value) => validateEmail(value);
+                        onPressed: () {
+
+                        },
+                      ),
+                      const SizedBox(height: 24.0),
+                      Row(
+                        children: [
+                          Expanded(child: Divider(thickness: 1)),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                            ),
+                            child: const Text("Or"),
+                          ),
+                          Expanded(child: Divider(thickness: 1)),
+                        ],
+                      ),
+                      const SizedBox(height: 24),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFFFFFFFF),
+                          minimumSize: Size(width, 48),
+                          side: BorderSide(color: Color(0xFFEFF0F6)),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "assets/images/google.png",
+                              width: 18,
+                              height: 18,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              "Continue with Google",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFFFFFFFF),
+                          minimumSize: Size(width, 48),
+                          side: BorderSide(color: Color(0xFFEFF0F6)),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "assets/images/facebook.png",
+                              width: 18,
+                              height: 18,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              "Continue with Facebook",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
