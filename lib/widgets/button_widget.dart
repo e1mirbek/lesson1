@@ -8,8 +8,9 @@ class ButtonWidget extends StatelessWidget {
   final Color backgroundColor;
   final Color foregroundColor;
   final BorderRadius borderRadius;
+  void Function()? onPressed;
 
-  const ButtonWidget({
+   ButtonWidget({
     super.key,
     required this.text,
     required this.backgroundColor,
@@ -17,6 +18,7 @@ class ButtonWidget extends StatelessWidget {
     required this.height,
     required this.width,
     required this.textStyle, required this.borderRadius,
+    required this.onPressed,
   });
 
   @override
@@ -34,7 +36,7 @@ class ButtonWidget extends StatelessWidget {
           ),
           elevation: 0, // Без тени
         ),
-        onPressed: () {},
+        onPressed: () => onPressed,
         child: Center(child: Text(text, style: textStyle)),
       ),
     );
